@@ -1,0 +1,27 @@
+{% extends "layout/base.html" %}
+{% load  crispy_forms_tags %}
+{% block title %} Register For EMDB {% endblock title %}
+
+
+
+{% block content %}
+
+<div class="pt-5">
+ 
+    <div class="container mt-4">
+        <h2>Create an account</h2>
+        <div class="form col-md-6">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form | crispy}}
+
+                <input type="submit" class="btn btn-success" value="Register">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+  
+{% endblock content %}

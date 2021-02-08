@@ -1,0 +1,95 @@
+<!-- exteding layout page  -->
+{% extends "layout/base.html" %}
+
+<!-- title here  --> {% block title %} Movies List {% endblock title %} <!-- title ends -->
+
+
+
+<!-- content block -->
+
+{% block content %}
+
+  <br>
+  <br>
+  <br>
+    <div class="container ">
+
+        <div class="row">
+
+           {% for movie in object_list %}
+             
+         
+            <div class="card text-left m-2">
+              <img class="card-img-top" src="holder.js/100px180/" alt="">
+              <div class="card-body">
+                <h4 class="card-title"> {{movie.title| capfirst}} </h4>
+                <p class="card-text"> {{movie.plot |  truncatechars:20}} <span> <small class="card-text">,  {{movie.year}} </small></span> </p>
+                <a href=" {% url 'core:MovieDetail' pk=movie.id  %} " class="btn btn-primary btn-sm">View Movie</a>
+              </div>
+            </div>
+            {%  empty  %}
+
+            <h3>No Movie Yet</h3>
+
+        {% endfor %}
+
+
+  
+        </div>
+
+
+
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+{% endblock content %}
+
+
+<!-- content block ends -->

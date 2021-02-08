@@ -1,0 +1,40 @@
+{% extends "layout/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Login | EMDB {% endblock title %}
+
+
+
+
+{% block content %}
+
+
+<div class="container ">
+
+    <div class="col-md-5 mt-5 pt-3">
+        <h2>Login</h2>
+
+        <form action="" method="post">
+
+            {% csrf_token %}
+            {{form|crispy}}
+
+
+        
+        <input type="submit" class="btn btn-outline-primary" value="Login">
+
+
+        </form>
+
+    </div>
+
+
+
+    
+</div>
+
+
+
+
+
+  
+{% endblock content %}

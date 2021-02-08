@@ -1,0 +1,137 @@
+{% extends "layout/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} {{object.title}} {% endblock title %}
+
+
+
+
+{% block content %}
+
+
+<div class="container pt-5 mt-4">
+  <div class="row">
+
+<!-- movie detail side  -->
+    <div class="col-md-7">
+
+
+        {% for i  in object.movieimage_set.all %}
+
+          <img src=" {{i.image.url }} " class="img" height=300px  alt="">
+          
+        {% endfor %}
+
+        <h2> {{object.title}} </h2>
+        <hr>
+        <p> {{object.plot}} </p>
+    
+        <small> {{object.year}} </small>
+
+
+
+
+
+
+        <hr>
+
+        <div class="voting-movie">
+
+
+          {% if vote_form %}
+
+            <form action=" {{vote_form_url}} " method="post">
+
+              {% csrf_token %}
+
+              {{vote_form | crispy}}
+
+
+              <input type="submit" class="btn btn-outline-warning" value="Vote">
+
+
+            </form>
+
+          
+
+          {% else %}
+
+          <p>Log in to vote for this movie </p>
+            
+          {% endif %}
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+        
+    </div>
+    <!-- movie detail side ends -->
+
+
+    <!-- movie detail sidebar  -->
+    <div class="col-md-5">
+        <h5 class="">This Movie is Rated</h5>
+        
+        <hr>
+        <p class="badge badge-primary"> {{object.get_rating_display}} </p>
+        <p>  {{object.score|default_if_none:"TBD"}} </p>
+
+
+        {% if image_form %}
+
+
+          <h5>Upload new Image</h5>
+
+          <form  action=" {% url 'core:MovieImageUpload' movie_id=object.id %} " method='post' enctype='multipart/form-data'>
+
+            {% csrf_token %}
+
+            {{image_form|crispy}}
+
+            <input  type='submit' class="btn btn-primary btn-sm"  value="Upload">
+
+          </form>
+
+
+
+
+          
+        {% endif %}
+
+
+
+
+
+    </div>
+    <!-- movie detail sedebar ends -->
+
+
+  </div>
+
+
+
+
+
+    
+
+
+</div>
+
+
+
+
+
+
+  
+{% endblock content %}

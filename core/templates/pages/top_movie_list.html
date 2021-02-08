@@ -1,0 +1,45 @@
+{% extends "layout/base.html" %}
+
+{% block title %} Top 10 Movies {% endblock title %}
+
+
+{% block content %}
+
+
+    <div class="container">
+        <h2>Top 10 Movies</h2>
+
+
+        {% for movie in object_list %}
+
+        <div class="card text-left m-2">
+            {{movie}}
+              <a href=" {% url 'core:MovieDetail' pk=movie.id  %} " class="btn btn-primary btn-sm">View Movie</a>
+            </div>
+          </div>
+          
+        {% endfor %}
+       
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+  
+{% endblock content %}
